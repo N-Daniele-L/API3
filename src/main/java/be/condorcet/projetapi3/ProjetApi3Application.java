@@ -39,7 +39,7 @@ public class ProjetApi3Application implements CommandLineRunner {
 		try(
 				Statement stmt = dbConnect.createStatement();
 				//représente une requête SQL
-				ResultSet rs = stmt.executeQuery("select * from APIBUREAU ");
+				ResultSet rs = stmt.executeQuery("select * from EXAMBUREAU");
 				//récupération des données à partir de la table client
 				//ensemble des lignes répondant à la requête
 		)

@@ -1,35 +1,19 @@
 package be.condorcet.projetapi3.modele;
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
+@ToString
+@Entity
+@Table(name = "EXAMBUREAU", schema = "ORA7", catalog = "ORCL.CONDORCET.BE")
 public class Bureau {
-    private String sigle,tel;
-    private int idbur;
-    public Bureau(int idbur, String sigle, String tel) {
-        this.idbur = idbur;
-        this.sigle = sigle;
-        this.tel = tel;
-    }
-
-    public String getSigle() {
-        return sigle;
-    }
-
-    public void setSigle(String sigle) {
-        this.sigle = sigle;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public int getIdbur() {
-        return idbur;
-    }
-
-    public void setIdbur(int idbur) {
-        this.idbur = idbur;
-    }
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bur_generator")
+    @SequenceGenerator(name="bur_generator", sequenceName = "EXAMBUREAU_SEQ", allocationSize=1)
+    private Integer id_bureau;
+    @NonNull
+    private String sigle;
+    @NonNull
+    private String tel;
 }
