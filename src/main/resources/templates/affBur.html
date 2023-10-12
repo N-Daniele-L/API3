@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Infos bureaux</title>
+</head>
+<body>
+<table border="1">
+    <th>ID</th>
+    <th>SIGLE</th>
+    <th>TELEPHONE</th>
+    <tr>
+        <td th:text="${monBureau.id_bureau}"/>
+        <td th:text="${monBureau.sigle}"/>
+        <td th:text="${monBureau.tel}"/>
+    </tr>
+</table>

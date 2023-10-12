@@ -11,7 +11,8 @@ import lombok.*;
 public class Bureau {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bur_generator")
     @SequenceGenerator(name="bur_generator", sequenceName = "EXAMBUREAU_SEQ", allocationSize=1)
-    private Integer id_bureau;
+    @Column(name = "id_bureau")
+    private Integer idBureau;
     @NonNull
     private String sigle;
     @NonNull
