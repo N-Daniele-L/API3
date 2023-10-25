@@ -6,9 +6,7 @@ import lombok.*;
 import java.sql.Date;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
 @ToString
 @Entity
 @Table(name = "EXAMMESSAGE", schema = "ORA7", catalog = "ORCL.CONDORCET.BE")
@@ -27,4 +25,8 @@ public class Message {
     //@ForeignKey
     @Column(name = "id_employe")
     private Integer idEmp;
+    @NonNull
+    @ManyToOne @JoinColumn(name = "id_employe")
+    private Employe employe;
+
 }

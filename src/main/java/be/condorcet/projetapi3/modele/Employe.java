@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
 @ToString
 @Entity
 @Table(name = "EXAMEMPLOYE", schema = "ORA7", catalog = "ORCL.CONDORCET.BE")
