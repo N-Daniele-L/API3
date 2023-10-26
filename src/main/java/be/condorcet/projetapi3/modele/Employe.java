@@ -10,7 +10,7 @@ import lombok.*;
 @Table(name = "EXAMEMPLOYE", schema = "ORA7", catalog = "ORCL.CONDORCET.BE")
 public class Employe {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_generator")
-    @SequenceGenerator(name="emp_generator", sequenceName = "EXAMEMPLOYE_SEQ", allocationSize=1)
+    @SequenceGenerator(name="emp_generator", sequenceName = "EXAMEMPLOYE_SEQ1", allocationSize=1)
     @Column(name = "id_employe")
     private Integer idEmploye;
     @NonNull
@@ -21,6 +21,7 @@ public class Employe {
     @NonNull
     private String prenom;
     //@ForeignKey
-    @Column(name = "id_bureau")
-    private Integer idBureau;
+    //@ManyToOne @JoinColumn(name = "id_bureau")
+    @NonNull @Column(name = "id_bureau")
+    private Integer idBur;
 }

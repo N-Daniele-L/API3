@@ -20,65 +20,91 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class EmployeServiceImplTest {
-    //@Autowired
-    //private EmployeServiceImpl employeServiceImpl;
-    //@Autowired
-    //private MessageServiceImpl messageServiceImpl;
+    @Autowired
+    private EmployeServiceImpl employeServiceImpl;
+    @Autowired
+    private MessageServiceImpl messageServiceImpl;
     Employe emp;
 
     @BeforeEach
     void setUp() {
-        /*try{
-            emp = new Employe(null,"Nom.Prenom@Test.com","NomTest","PrenomTest",null);
+        try{
+            emp = new Employe(null,"Nom.Prenom@Test.com","NomTest","PrenomTest",1);
             employeServiceImpl.create(emp);
             System.out.println("création de l'employé : " + emp);
         } catch (Exception e) {
-            System.out.println("erreur de création du client : "+emp +" erreur : "+e);
-        }*/
+            System.out.println("erreur de création du mployddjk : "+emp +" erreur : "+e);
+        }
     }
 
     @AfterEach
     void tearDown() {
-        /*try {
+        try {
             employeServiceImpl.delete(emp);
             System.out.println("effacement de l'employé : "+emp);
         } catch (Exception e) {
             System.out.println("erreur d'effacement du client :"+emp+" erreur : "+e);
-        }*/
+        }
     }
 
     @Test
     void read() {
-        /*try {
+        try {
             int numEmp = emp.getIdEmploye();
             Employe emp2 = employeServiceImpl.read(numEmp);
-            assertEquals("Nom.Prenom@Test.com",emp2.getNom(),"mails différents"+"Nom.Prenom@Test.com"+"-"+emp2.getMailEmp());
+            assertEquals("Nom.Prenom@Test.com",emp2.getMailEmp(),"mails différents"+"Nom.Prenom@Test.com"+"-"+emp2.getMailEmp());
+            assertEquals("NomTest",emp2.getNom(),"noms différents"+"NomTest"+"-"+emp2.getNom());
+            assertEquals("PrenomTest",emp2.getPrenom(),"prenoms différents"+"PrenomTest"+"-"+emp2.getPrenom());
         } catch (Exception e) {
             fail("recherche infructueuse" +e);
-        }*/
-    }
-
-    @Test
-    void testRead() {
+        }
     }
 
     @Test
     void create() {
+        assertNotEquals(0,emp.getIdEmploye(),"id employe non incrémenté");
+        assertEquals("NomTest",emp.getNom(),"nom employe non enregistré : "+emp.getNom()+ " au lieu de NomTest");
+        assertEquals("PrenomTest",emp.getPrenom(),"prénom client non enregistré : "+emp.getPrenom()+" au lieu de PrenomTest");
+        assertEquals("Nom.Prenom@Test.com",emp.getMailEmp(),"mail employe non enregistré : "+emp.getMailEmp()+ " au lieu de Nom.Prenom@Test.com");
     }
 
     @Test
-    void testRead1() {
-    }
+    void update(){
+        try {
+            emp.setNom("TestNom");
+            emp.setPrenom("TestPrenom");
+            emp.setMailEmp("Prenom.Nom@Test.com");
+            emp = employeServiceImpl.update(emp);
+            assertEquals("TestNom",emp.getNom(),"noms différents " + "TestNom -" + emp.getNom());
+            assertEquals("TestPrenom",emp.getPrenom(),"prenoms différents " + "TestPrenom -" + emp.getPrenom());
+            assertEquals("Prenom.Nom@Test.com",emp.getMailEmp(),"mails différents " + "Prenom.Nom@Test.com -" + emp.getMailEmp());
+        } catch (Exception e) {
+            fail("erreur de mise à jour " + e);
+        }
 
-    @Test
-    void update() {
+
     }
 
     @Test
     void delete() {
+        try{
+            employeServiceImpl.delete(emp);
+            Assertions.assertThrows(Exception.class, () -> {
+                employeServiceImpl.read(emp.getIdEmploye());
+            },"record non effacé");
+        }
+        catch(Exception e){
+            fail("erreur d'effacement "+e);
+        }
     }
 
     @Test
     void all() {
+        try {
+            List<Employe> employes = employeServiceImpl.all();
+            assertNotEquals(0,employes.size(),"la liste ne contient aucun element");
+        } catch (Exception e) {
+            fail("erreur de recherche de tous les clients "+e);;
+        }
     }
 }
