@@ -77,6 +77,16 @@ class MessageServiceImplTest {
 
     @Test
     void update() {
+        mess.setObjet("newObjetTest");
+        mess.setContenu("newContenuTest");
+        try{
+            mess = messageServiceImpl.update(mess);
+            assertEquals(mess.getObjet(),"newObjetTest","Objet différents" + mess.getObjet()+ " - newObjetTest" );
+            assertEquals(mess.getContenu(),"newContenuTest","Contenu différents" + mess.getContenu()+ " - newContenuTest" );
+        } catch (Exception e) {
+            fail("erreur de mise à jour "+e);
+        }
+
     }
 
     @Test
