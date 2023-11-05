@@ -22,6 +22,7 @@ public class Employe {
     private String prenom;
     //@ForeignKey
     //@ManyToOne @JoinColumn(name = "id_bureau")
+    @ToString.Exclude
     @NonNull @Column(name = "id_bureau")
     private Integer idBur;
 }

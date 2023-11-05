@@ -14,7 +14,9 @@ import java.math.RoundingMode;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -34,7 +36,8 @@ class MessageServiceImplTest {
             employeServiceImpl.create(emp);
             mess = new Message(null,"testobj","testcontenu",Date.valueOf(LocalDate.now()),emp);
             messageServiceImpl.create(mess);
-            System.out.println("création de message + ploy : " + mess);
+            System.out.println("création de message : " + mess);
+            System.out.println("création de employé : " + emp);
         } catch (Exception e) {
             System.out.println("erreur de création de message "+e);
         }
@@ -103,9 +106,51 @@ class MessageServiceImplTest {
 
     @Test
     void all() {
+        try {
+            List<Message> messages = messageServiceImpl.all();
+            assertNotEquals(0,messages.size(),"la liste ne contient aucun element");
+        } catch (Exception e) {
+            fail("erreur de recherche de tous les messages "+e);;
+        }
     }
 
     @Test
-    void getMessage() {
+    void getMessageByEmp() {
+        try {
+            List<Message> lme = messageServiceImpl.getMessageByEmp(emp);
+            boolean trouve = false;
+            for(Message m:lme){
+                // Integer => object
+                if((int)m.getEmploye().getIdEmploye() == emp.getIdEmploye()){
+                    trouve=true;
+                    break;
+                }
+            }
+            assertTrue(trouve,"message absent de la liste de l'employé");
+        }
+        catch(Exception e){
+            fail("Erreur de recherche "+e);
+        }
+    }
+
+    @Test
+    void getMessageByObjet() {
+        try {
+            Message mess2 = new Message(null,"testobj","testcontenu",Date.valueOf(LocalDate.now()),emp);
+            messageServiceImpl.create(mess2);
+            List<Message> lme = messageServiceImpl.getMessageByObject("testobj");
+            boolean trouve = true;
+            for(Message m:lme){
+                if(!m.getObjet().equals("testobj")){
+                    trouve=false;
+                    break;
+                }
+            }
+            assertTrue(trouve,"message absent de la liste de l'employé");
+            messageServiceImpl.delete(mess2);
+        }
+        catch(Exception e){
+            fail("Erreur de recherche "+e);
+        }
     }
 }

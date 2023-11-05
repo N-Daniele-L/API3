@@ -6,5 +6,6 @@ import be.condorcet.projetapi3.modele.Message;
 import java.util.List;
 
 public interface InterfMessageRepository extends InterfService<Message>{
-    public List<Message> getMessage(Employe employe);
+    public List<Message> getMessageByEmp(Employe employe);
+    public List<Message> getMessageByObject(String obj);
 }

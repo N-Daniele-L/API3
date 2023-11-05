@@ -48,8 +48,13 @@ public class MessageServiceImpl implements InterfMessageRepository{
     }
 
     @Override
-    public List<Message> getMessage(Employe emp) {
+    public List<Message> getMessageByEmp(Employe emp) {
         List<Message> lme = messageRepository.findMessageByEmploye(emp);
-        return null;
+        return lme;
+    }
+
+    public List<Message> getMessageByObject(String obj){
+        List<Message> lme = messageRepository.findMessageByObjet(obj);
+        return lme;
     }
 }

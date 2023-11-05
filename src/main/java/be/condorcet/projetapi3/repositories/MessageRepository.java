@@ -10,4 +10,5 @@ import java.util.List;
 public interface MessageRepository extends JpaRepository<Message,Integer>{
     List<Message> findByIdMessAndObjetAndContenu(Integer id,String objet,String contenu);
     List<Message> findMessageByEmploye(Employe emp);
+    List<Message> findMessageByObjet(String obj);
 }

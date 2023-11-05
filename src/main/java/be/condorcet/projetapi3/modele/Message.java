@@ -26,6 +26,7 @@ public class Message {
     private Integer idEmp;*/
     @NonNull
     @ManyToOne @JoinColumn(name = "id_employe")
+    @ToString.Exclude
     private Employe employe;
 
 }
