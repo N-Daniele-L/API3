@@ -1,7 +1,10 @@
 package be.condorcet.projetapi3.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
@@ -17,4 +20,8 @@ public class Bureau {
     private String sigle;
     @NonNull
     private String tel;
+    @JsonIgnore
+    @ToString.Exclude
+    @OneToMany(mappedBy = "bureau")
+    private List<Employe> employes;
 }

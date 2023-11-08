@@ -1,5 +1,6 @@
 package be.condorcet.projetapi3.services;
 
+import be.condorcet.projetapi3.modele.Bureau;
 import be.condorcet.projetapi3.modele.Employe;
 import be.condorcet.projetapi3.modele.Message;
 import org.junit.jupiter.api.AfterEach;
@@ -24,24 +25,32 @@ class EmployeServiceImplTest {
     private EmployeServiceImpl employeServiceImpl;
     @Autowired
     private MessageServiceImpl messageServiceImpl;
+    @Autowired
+    private BureauServiceImpl bureauServiceImpl;
     Employe emp;
+    Bureau bur;
 
     @BeforeEach
     void setUp() {
         try{
-            emp = new Employe(null,"Nom.Prenom@Test.com","NomTest","PrenomTest",1);
+            bur = new Bureau("TEST","0000000");
+            bureauServiceImpl.create(bur);
+            emp = new Employe("Nom.Prenom@Test.com","NomTest","PrenomTest",bur);
             employeServiceImpl.create(emp);
             System.out.println("création de l'employé : " + emp);
         } catch (Exception e) {
-            System.out.println("erreur de création du mployddjk : "+emp +" erreur : "+e);
+            System.out.println("erreur de création de l'employé : "+emp +" erreur : "+e);
         }
     }
 
     @AfterEach
     void tearDown() {
         try {
+
             employeServiceImpl.delete(emp);
             System.out.println("effacement de l'employé : "+emp);
+            bureauServiceImpl.delete(bur);
+            System.out.println("effacement du bureau : "+bur);
         } catch (Exception e) {
             System.out.println("erreur d'effacement du client :"+emp+" erreur : "+e);
         }
@@ -62,7 +71,7 @@ class EmployeServiceImplTest {
 
     @Test
     void create() {
-        assertNotEquals(0,emp.getIdEmploye(),"id employe non incrémenté");
+        assertNotEquals(null,emp.getIdEmploye(),"id employe non incrémenté");
         assertEquals("NomTest",emp.getNom(),"nom employe non enregistré : "+emp.getNom()+ " au lieu de NomTest");
         assertEquals("PrenomTest",emp.getPrenom(),"prénom client non enregistré : "+emp.getPrenom()+" au lieu de PrenomTest");
         assertEquals("Nom.Prenom@Test.com",emp.getMailEmp(),"mail employe non enregistré : "+emp.getMailEmp()+ " au lieu de Nom.Prenom@Test.com");

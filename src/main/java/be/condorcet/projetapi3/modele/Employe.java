@@ -1,7 +1,9 @@
 package be.condorcet.projetapi3.modele;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
@@ -9,8 +11,9 @@ import lombok.*;
 @Entity
 @Table(name = "EXAMEMPLOYE", schema = "ORA7", catalog = "ORCL.CONDORCET.BE")
 public class Employe {
-    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_generator")
-    @SequenceGenerator(name="emp_generator", sequenceName = "EXAMEMPLOYE_SEQ1", allocationSize=1)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_generator")
+    @SequenceGenerator(name = "emp_generator", sequenceName = "EXAMEMPLOYE_SEQ1", allocationSize = 1)
     @Column(name = "id_employe")
     private Integer idEmploye;
     @NonNull
@@ -20,9 +23,13 @@ public class Employe {
     private String nom;
     @NonNull
     private String prenom;
-    //@ForeignKey
-    //@ManyToOne @JoinColumn(name = "id_bureau")
+    @JsonIgnore
     @ToString.Exclude
-    @NonNull @Column(name = "id_bureau")
-    private Integer idBur;
+    @OneToMany(mappedBy = "employe")
+    private List<Message> message;
+    @NonNull
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "id_bureau")
+    private Bureau bureau;
 }

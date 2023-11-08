@@ -1,5 +1,6 @@
 package be.condorcet.projetapi3.services;
 
+import be.condorcet.projetapi3.modele.Bureau;
 import be.condorcet.projetapi3.modele.Employe;
 import be.condorcet.projetapi3.modele.Message;
 import org.junit.jupiter.api.AfterEach;
@@ -26,18 +27,24 @@ class MessageServiceImplTest {
     private EmployeServiceImpl employeServiceImpl;
     @Autowired
     private  MessageServiceImpl messageServiceImpl;
+    @Autowired
+    private BureauServiceImpl bureauServiceImpl;
     Employe emp;
     Message mess;
+    Bureau bur;
 
     @BeforeEach
     void setUp() {
         try {
-            emp = new Employe(null, "Nom.Prenom@Test.com", "NomTest", "PrenomTest", 1);
+            bur = new Bureau("TEST","0000000");
+            bureauServiceImpl.create(bur);
+            emp = new Employe("Nom.Prenom@Test.com", "NomTest", "PrenomTest",bur);
             employeServiceImpl.create(emp);
             mess = new Message(null,"testobj","testcontenu",Date.valueOf(LocalDate.now()),emp);
             messageServiceImpl.create(mess);
             System.out.println("création de message : " + mess);
             System.out.println("création de employé : " + emp);
+            System.out.println("création du bureau : " + bur);
         } catch (Exception e) {
             System.out.println("erreur de création de message "+e);
         }
@@ -53,6 +60,12 @@ class MessageServiceImplTest {
         }
         try{
             employeServiceImpl.delete(emp);
+        }
+        catch(Exception e){
+            System.out.println("erreur d'effacement de l'employe "+e);
+        }
+        try{
+            bureauServiceImpl.delete(bur);
         }
         catch(Exception e){
             System.out.println("erreur d'effacement de l'employe "+e);

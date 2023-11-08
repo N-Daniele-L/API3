@@ -21,9 +21,6 @@ public class Message {
     private String contenu;
     @NonNull
     private Date dateenvoi;
-    //@ForeignKey
-    /*@Column(name = "id_employe")
-    private Integer idEmp;*/
     @NonNull
     @ManyToOne @JoinColumn(name = "id_employe")
     @ToString.Exclude
