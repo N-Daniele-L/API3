@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
@@ -32,4 +33,12 @@ public class Employe {
     @ManyToOne
     @JoinColumn(name = "id_bureau")
     private Bureau bureau;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employe employe = (Employe) o;
+        return Objects.equals(mailEmp, employe.mailEmp);
+    }
 }

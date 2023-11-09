@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*",exposedHeaders = "*")
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/employes")
 public class RestEmploye {
     @Autowired
     private InterfEmployeService employeService;
