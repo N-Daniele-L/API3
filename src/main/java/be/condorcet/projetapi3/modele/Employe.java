@@ -33,7 +33,6 @@ public class Employe {
     @ManyToOne
     @JoinColumn(name = "id_bureau")
     private Bureau bureau;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

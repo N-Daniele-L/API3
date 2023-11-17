@@ -40,7 +40,7 @@ class MessageServiceImplTest {
             bureauServiceImpl.create(bur);
             emp = new Employe("Nom.Prenom@Test.com", "NomTest", "PrenomTest",bur);
             employeServiceImpl.create(emp);
-            mess = new Message(null,"testobj","testcontenu",Date.valueOf(LocalDate.now()),emp);
+            mess = new Message("testobj","testcontenu",Date.valueOf(LocalDate.now()),emp);
             messageServiceImpl.create(mess);
             System.out.println("création de message : " + mess);
             System.out.println("création de employé : " + emp);
