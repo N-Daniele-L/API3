@@ -1,4 +1,4 @@
-package be.condorcet.projetapi3.services;
+package be.condorcet.projetapi3.services.Employe;
 
 import be.condorcet.projetapi3.modele.Employe;
 import be.condorcet.projetapi3.repositories.EmployeRepository;
@@ -13,15 +13,13 @@ import java.util.Optional;
 @Transactional(rollbackOn = Exception.class)
 public class EmployeServiceImpl implements InterfEmployeService{
 
-        @Autowired
-        private EmployeRepository employeRepository;
+    @Autowired
+    private EmployeRepository employeRepository;
 
-        @Override
-        public List<Employe> read(String nom) {
-            return employeRepository.findByNomLike(nom+"%");
-        }
-
-
+    @Override
+    public List<Employe> read(String nom) {
+        return employeRepository.findByNomLike(nom + "%");
+    }
     @Override
         public Employe read(String nom, String prenom, String mail) {
             return employeRepository.findByNomAndPrenomAndMailEmp(nom,prenom,mail);

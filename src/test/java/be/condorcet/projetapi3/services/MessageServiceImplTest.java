@@ -3,21 +3,19 @@ package be.condorcet.projetapi3.services;
 import be.condorcet.projetapi3.modele.Bureau;
 import be.condorcet.projetapi3.modele.Employe;
 import be.condorcet.projetapi3.modele.Message;
+import be.condorcet.projetapi3.services.Bureau.BureauServiceImpl;
+import be.condorcet.projetapi3.services.Employe.EmployeServiceImpl;
+import be.condorcet.projetapi3.services.Message.MessageServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +24,7 @@ class MessageServiceImplTest {
     @Autowired
     private EmployeServiceImpl employeServiceImpl;
     @Autowired
-    private  MessageServiceImpl messageServiceImpl;
+    private MessageServiceImpl messageServiceImpl;
     @Autowired
     private BureauServiceImpl bureauServiceImpl;
     Employe emp;
@@ -149,7 +147,7 @@ class MessageServiceImplTest {
     @Test
     void getMessageByObjet() {
         try {
-            Message mess2 = new Message(null,"testobj","testcontenu",Date.valueOf(LocalDate.now()),emp);
+            Message mess2 = new Message("testobj","testcontenu",Date.valueOf(LocalDate.now()),emp);
             messageServiceImpl.create(mess2);
             List<Message> lme = messageServiceImpl.getMessageByObject("testobj");
             boolean trouve = true;

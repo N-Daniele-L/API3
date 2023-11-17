@@ -1,9 +1,8 @@
 package be.condorcet.projetapi3.webservices;
 
-import be.condorcet.projetapi3.modele.Bureau;
 import be.condorcet.projetapi3.modele.Employe;
-import be.condorcet.projetapi3.services.BureauServiceImpl;
-import be.condorcet.projetapi3.services.EmployeServiceImpl;
+import be.condorcet.projetapi3.services.Bureau.BureauServiceImpl;
+import be.condorcet.projetapi3.services.Employe.EmployeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

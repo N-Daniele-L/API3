@@ -1,9 +1,8 @@
 package be.condorcet.projetapi3.webservices;
 
 import be.condorcet.projetapi3.modele.Bureau;
-import be.condorcet.projetapi3.modele.Employe;
-import be.condorcet.projetapi3.services.InterfBureauService;
-import be.condorcet.projetapi3.services.InterfEmployeService;
+import be.condorcet.projetapi3.services.Bureau.InterfBureauService;
+import be.condorcet.projetapi3.services.Employe.InterfEmployeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ public class RestBureau {
     private InterfEmployeService employeService;
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Bureau> getBureau(@PathVariable(value = "id") int id) throws  Exception{
-        System.out.println("recherche du bureau avec id + id");
+        System.out.println("recherche du bureau avec id " + id);
         Bureau bureau = bureauService.read(id);
         return new ResponseEntity<>(bureau, HttpStatus.OK);
     }
@@ -38,7 +37,7 @@ public class RestBureau {
     }
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public ResponseEntity<Bureau> updateBureau(@PathVariable(value="id")int id,@RequestBody Bureau bureau) throws Exception{
-        System.out.println("Update du bureau avec l'id : ");
+        System.out.println("Update du bureau avec l'id : " + id);
         bureau.setIdBureau(id);
         Bureau bur = bureauService.update(bureau);
         return new ResponseEntity<>(bur,HttpStatus.OK);

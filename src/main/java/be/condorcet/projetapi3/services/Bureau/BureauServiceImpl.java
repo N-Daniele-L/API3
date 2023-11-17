@@ -1,9 +1,7 @@
-package be.condorcet.projetapi3.services;
+package be.condorcet.projetapi3.services.Bureau;
 
 import be.condorcet.projetapi3.modele.Bureau;
-import be.condorcet.projetapi3.modele.Employe;
 import be.condorcet.projetapi3.repositories.BureauRepository;
-import be.condorcet.projetapi3.repositories.EmployeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

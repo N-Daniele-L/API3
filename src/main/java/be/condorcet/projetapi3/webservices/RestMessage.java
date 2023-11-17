@@ -1,8 +1,8 @@
 package be.condorcet.projetapi3.webservices;
 import be.condorcet.projetapi3.modele.Employe;
 import be.condorcet.projetapi3.modele.Message;
-import be.condorcet.projetapi3.services.EmployeServiceImpl;
-import be.condorcet.projetapi3.services.MessageServiceImpl;
+import be.condorcet.projetapi3.services.Employe.EmployeServiceImpl;
+import be.condorcet.projetapi3.services.Message.MessageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

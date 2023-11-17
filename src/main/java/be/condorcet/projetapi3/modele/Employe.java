@@ -24,14 +24,14 @@ public class Employe {
     private String nom;
     @NonNull
     private String prenom;
-    @JsonIgnore
-    @ToString.Exclude
     @OneToMany(mappedBy = "employe")
+    @ToString.Exclude
+    @JsonIgnore
     private List<Message> message;
     @NonNull
-    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "id_bureau")
+    @ToString.Exclude
     private Bureau bureau;
     @Override
     public boolean equals(Object o) {

@@ -1,4 +1,4 @@
-package be.condorcet.projetapi3.services;
+package be.condorcet.projetapi3.services.Message;
 
 import be.condorcet.projetapi3.modele.Employe;
 import be.condorcet.projetapi3.modele.Message;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)

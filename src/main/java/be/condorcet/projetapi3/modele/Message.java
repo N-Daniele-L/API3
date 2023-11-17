@@ -1,9 +1,11 @@
 package be.condorcet.projetapi3.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
@@ -21,9 +23,14 @@ public class Message {
     private String contenu;
     @NonNull
     private Date dateenvoi;
+
     @NonNull
     @ManyToOne @JoinColumn(name = "id_employe")
     @ToString.Exclude
     private Employe employe;
+    @JsonIgnore
+    @OneToMany(mappedBy = "message")
+    @ToString.Exclude
+    List<Infos> infos;
 
 }
