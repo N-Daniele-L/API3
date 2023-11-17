@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
-public class MessageServiceImpl implements InterfMessageRepository{
+public class MessageServiceImpl implements InterfMessageService{
     @Autowired
     private MessageRepository messageRepository;
     @Autowired

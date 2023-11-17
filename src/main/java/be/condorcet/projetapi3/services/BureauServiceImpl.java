@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
-public class BureauServiceImpl implements InterfBureauRepository{
+public class BureauServiceImpl implements InterfBureauService{
     @Autowired
     private BureauRepository bureauRepository;
 

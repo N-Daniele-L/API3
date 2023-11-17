@@ -1,7 +1,9 @@
 package be.condorcet.projetapi3.webservices;
 
+import be.condorcet.projetapi3.modele.Bureau;
 import be.condorcet.projetapi3.modele.Employe;
-import be.condorcet.projetapi3.services.InterfEmployeService;
+import be.condorcet.projetapi3.services.BureauServiceImpl;
+import be.condorcet.projetapi3.services.EmployeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,8 @@ import java.util.List;
 @RequestMapping("/employes")
 public class RestEmploye {
     @Autowired
-    private InterfEmployeService employeService;
+    private EmployeServiceImpl employeService;
+    private BureauServiceImpl bureauService;
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Employe> getEmploye(@PathVariable(value = "id") int id) throws  Exception{
         System.out.println("recherche de l'employe avec id + id");
