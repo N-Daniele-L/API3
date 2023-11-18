@@ -16,6 +16,8 @@ import java.util.Optional;
 public class InfosServiceImpl implements InterfInfosService{
     @Autowired
     private InfosRepository infosRepository;
+
+    //won't work because my id is infokey and not an integer
     @Override
     public Infos read(Integer id) throws Exception {
         return null;
@@ -23,11 +25,6 @@ public class InfosServiceImpl implements InterfInfosService{
     @Override
     public Infos create(Infos infos) throws Exception {
         infosRepository.save(infos);
-        return infos;
-    }
-    @Override
-    public List<Infos> getInfosByEmploye(Employe emp) throws Exception {
-        List<Infos> infos = infosRepository.findInfosByEmploye(emp);
         return infos;
     }
     @Override
@@ -41,8 +38,6 @@ public class InfosServiceImpl implements InterfInfosService{
         infosRepository.save(infos);
         return infos;
     }
-
-
     @Override
     public void delete(Infos infos) throws Exception {
         infosRepository.deleteById(infos.getId());
@@ -51,5 +46,10 @@ public class InfosServiceImpl implements InterfInfosService{
     @Override
     public List<Infos> all() throws Exception {
         return infosRepository.findAll();
+    }
+    @Override
+    public List<Infos> getInfosByEmploye(Employe emp) throws Exception {
+        List<Infos> infos = infosRepository.findInfosByEmploye(emp);
+        return infos;
     }
 }

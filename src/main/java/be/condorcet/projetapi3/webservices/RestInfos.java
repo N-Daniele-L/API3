@@ -50,6 +50,12 @@ public class RestInfos {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @RequestMapping(value =  "/all",method = RequestMethod.GET)
+    public ResponseEntity<List<Infos>> listInfos() throws Exception{
+        System.out.println("recherche de toutes les infos");
+        return new ResponseEntity<>(infosService.all(), HttpStatus.OK);
+    }
+
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Void>  handleIOException(Exception ex) {
         System.out.println("erreur : "+ex.getMessage());
