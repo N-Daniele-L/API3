@@ -7,23 +7,24 @@ import lombok.*;
 import java.sql.Date;
 
 @Data
-@NoArgsConstructor @RequiredArgsConstructor @AllArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 @ToString
 @Entity
 @Table(name = "EXAMINFOS", schema = "ORA7",catalog = "ORCL.CONDORCET.BE")
 public class Infos {
     @EmbeddedId //primary key => instance of InfosKey
     @NonNull
+    @ToString.Exclude
     private InfosKey id;
 
     @ManyToOne
     @MapsId("idEmploye") // foreign key and part of the primary key
     @JoinColumn(name = "id_employe")
-    Employe employe;
+    private Employe employe;
     @ManyToOne
     @MapsId("idMess") // foreign key and part of the primary key
     @JoinColumn(name = "id_mess")
-    Message message;
-
+    private Message message;
+    @NonNull
     private Date datelecture;
 }

@@ -46,7 +46,7 @@ public class RestMessage {
     }
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public ResponseEntity<Message> updateMessage(@PathVariable(value="id")int id,@RequestBody Message message) throws Exception{
-        System.out.println("Update du message avec l'id : ");
+        System.out.println("Update du message avec l'id : " + id);
         message.setIdMess(id);
         Message mess= messageService.update(message);
         return new ResponseEntity<>(mess,HttpStatus.OK);

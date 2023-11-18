@@ -19,7 +19,7 @@ public class RestEmploye {
     private BureauServiceImpl bureauService;
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Employe> getEmploye(@PathVariable(value = "id") int id) throws  Exception{
-        System.out.println("recherche de l'employe avec id + id");
+        System.out.println("recherche de l'employe avec id : " + id);
         Employe employe = employeService.read(id);
         return new ResponseEntity<>(employe, HttpStatus.OK);
     }
@@ -48,7 +48,7 @@ public class RestEmploye {
     }
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
     public ResponseEntity<Employe> updateEmploye(@PathVariable(value="id")int id,@RequestBody Employe employe) throws Exception{
-        System.out.println("Update de l'employé avec l'id : ");
+        System.out.println("Update de l'employé avec l'id : " + id);
         employe.setIdEmploye(id);
         Employe emp = employeService.update(employe);
         return new ResponseEntity<>(emp,HttpStatus.OK);

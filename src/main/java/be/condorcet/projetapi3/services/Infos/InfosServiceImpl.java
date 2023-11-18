@@ -35,8 +35,7 @@ public class InfosServiceImpl implements InterfInfosService{
     @Override
     public Infos update(Infos infos) throws Exception {
         read(infos.getId());
-        infosRepository.save(infos);
-        return infos;
+        return infosRepository.save(infos);
     }
     @Override
     public void delete(Infos infos) throws Exception {
@@ -49,7 +48,6 @@ public class InfosServiceImpl implements InterfInfosService{
     }
     @Override
     public List<Infos> getInfosByEmploye(Employe emp) throws Exception {
-        List<Infos> infos = infosRepository.findInfosByEmploye(emp);
-        return infos;
+        return infosRepository.findInfosByEmploye(emp);
     }
 }
