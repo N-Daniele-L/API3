@@ -25,6 +25,5 @@ public class Infos {
     @MapsId("idMess") // foreign key and part of the primary key
     @JoinColumn(name = "id_mess")
     private Message message;
-    @NonNull
     private Date datelecture;
 }
