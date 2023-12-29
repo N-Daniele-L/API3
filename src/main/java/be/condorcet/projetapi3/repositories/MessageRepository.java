@@ -11,4 +11,5 @@ public interface MessageRepository extends JpaRepository<Message,Integer>{
     List<Message> findByIdMessAndObjetAndContenu(Integer id,String objet,String contenu);
     List<Message> findMessageByEmploye(Employe emp);
     List<Message> findMessageByObjet(String obj);
+    List<Message> findMessageByEmploye_MailEmp(String mail);
 }

@@ -7,5 +7,5 @@ import be.condorcet.projetapi3.services.InterfService;
 import java.util.List;
 
 public interface InterfBureauService extends InterfService<Bureau> {
-    public Bureau read(String sigle);
+    public List<Bureau> read(String sigle);
 }

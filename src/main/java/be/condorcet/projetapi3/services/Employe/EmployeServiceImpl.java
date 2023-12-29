@@ -37,6 +37,10 @@ public class EmployeServiceImpl implements InterfEmployeService{
             return oem.get();
         }
 
+    public Employe readByMail(String mail) throws Exception {
+        return employeRepository.findByMailEmp(mail);
+    }
+
         @Override
         public Employe update(Employe employe) throws Exception {
             read(employe.getIdEmploye());

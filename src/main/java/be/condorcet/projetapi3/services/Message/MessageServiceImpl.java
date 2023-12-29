@@ -52,6 +52,11 @@ public class MessageServiceImpl implements InterfMessageService{
         return lme;
     }
 
+    public List<Message> getMessageBySender(String email){
+        List<Message> lme = messageRepository.findMessageByEmploye_MailEmp(email);
+        return lme;
+    }
+
     public List<Message> getMessageByObject(String obj){
         List<Message> lme = messageRepository.findMessageByObjet(obj);
         return lme;

@@ -16,9 +16,10 @@ public class BureauServiceImpl implements InterfBureauService{
     private BureauRepository bureauRepository;
 
     @Override
-    public Bureau read(String sigle) {
-        return bureauRepository.findBySigle(sigle);
+    public List<Bureau> read(String sigle) {
+        return bureauRepository.findBySigleLike(sigle);
     }
+
 
     @Override
     public Bureau create(Bureau bureau) throws Exception {

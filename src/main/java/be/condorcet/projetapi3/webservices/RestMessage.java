@@ -32,9 +32,16 @@ public class RestMessage {
     }
 
     @RequestMapping(value = "/idEmploye={id}",method = RequestMethod.GET)
-    public ResponseEntity <List<Message>> getMessageByObjet(@PathVariable(value = "id")int id) throws Exception{
+    public ResponseEntity <List<Message>> getMessageByEmp(@PathVariable(value = "id")int id) throws Exception{
         System.out.println("recherche des messages envoyé par l'employé avec cet id : "+ id);
         Employe emp = employeService.read(id);
+        List<Message> lme = messageService.getMessageByEmp(emp);
+        return new ResponseEntity<>(lme,HttpStatus.OK);
+    }
+    @RequestMapping(value = "/mail={mail}",method = RequestMethod.GET)
+    public ResponseEntity <List<Message>> getMessageBySender(@PathVariable(value = "mail")String mail) throws Exception{
+        System.out.println("recherche des messages envoyé par l'employé avec cet id : "+ mail);
+        Employe emp = employeService.readByMail(mail);
         List<Message> lme = messageService.getMessageByEmp(emp);
         return new ResponseEntity<>(lme,HttpStatus.OK);
     }
@@ -60,7 +67,7 @@ public class RestMessage {
     }
     @RequestMapping(value =  "/all",method = RequestMethod.GET)
     public ResponseEntity<List<Message>> listMessage() throws Exception{
-        System.out.println("recherche de tous les employés");
+        System.out.println("recherche de tous les messages");
         return new ResponseEntity<>(messageService.all(), HttpStatus.OK);
     }
     @ExceptionHandler({Exception.class})

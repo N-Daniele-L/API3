@@ -25,7 +25,7 @@ public class RestEmploye {
     }
     @RequestMapping(value = "/nom={nom}",method = RequestMethod.GET)
     public ResponseEntity<List<Employe>> listEmployeNom(@PathVariable(value="nom") String nom) throws  Exception{
-        System.out.println("recherche de " +nom);
+        System.out.println("recherche du nom : " +nom);
         List<Employe> employes;
         employes = employeService.read(nom);
         return new ResponseEntity<>(employes, HttpStatus.OK);

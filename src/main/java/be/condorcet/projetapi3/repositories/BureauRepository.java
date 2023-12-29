@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface BureauRepository extends JpaRepository<Bureau,Integer> {
     List<Bureau> findByIdBureauAndSigleAndTel(Integer id_bur, String sigle, String tel);
-    Bureau findBySigle(String sigle);
+    List<Bureau> findBySigleLike(String sigle);
+    List<Bureau> findBySigle(String sigle);
+
 }

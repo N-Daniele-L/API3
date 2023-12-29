@@ -24,10 +24,12 @@ public class RestBureau {
         return new ResponseEntity<>(bureau, HttpStatus.OK);
     }
     @RequestMapping(value = "/sigle={sigle}",method = RequestMethod.GET)
-    public ResponseEntity<Bureau> BureauSigle(@PathVariable(value="sigle") String sigle) throws  Exception{
+    public ResponseEntity<List<Bureau>> BureauSigle(@PathVariable(value="sigle") String sigle) throws  Exception{
         System.out.println("recherche du bureau avec sigle : " +sigle);
-        Bureau bureau = bureauService.read(sigle);
-        return new ResponseEntity<>(bureau, HttpStatus.OK);
+
+        List<Bureau> bureaux = bureauService.read(sigle);
+        System.out.println(bureaux);
+        return new ResponseEntity<>(bureaux, HttpStatus.OK);
     }
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Bureau> createBureau(@RequestBody Bureau bureau) throws Exception{
@@ -51,7 +53,7 @@ public class RestBureau {
     }
     @RequestMapping(value =  "/all",method = RequestMethod.GET)
     public ResponseEntity<List<Bureau>> listBureau() throws Exception{
-        System.out.println("recherche de tous les employés");
+        System.out.println("recherche de tous les bureaux");
         return new ResponseEntity<>(bureauService.all(), HttpStatus.OK);
     }
     @ExceptionHandler({Exception.class})
