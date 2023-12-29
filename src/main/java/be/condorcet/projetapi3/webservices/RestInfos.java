@@ -39,6 +39,15 @@ public class RestInfos {
         List<Infos> infos = infosService.getInfosByEmploye(emp);
         return new ResponseEntity<>(infos, HttpStatus.OK);
     }
+    @RequestMapping(value = "/{idEmp}/{idMess}",method = RequestMethod.GET)
+    public ResponseEntity<List<Infos>> getInfos(@PathVariable(value="idEmp") int idEmp,
+                                                @PathVariable(value = "idMess") int idMess) throws  Exception{
+        System.out.println("recherche des messages reçu par l'employé : " + idEmp);
+        Employe emp = employeService.read(idEmp);
+        Message mess = messageService.read(idMess);
+        List<Infos> infos = infosService.getInfosByEmploye(emp);
+        return new ResponseEntity<>(infos, HttpStatus.OK);
+    }
     @RequestMapping(value = "/{idEmp}/{idMess}",method = RequestMethod.PUT)
     public ResponseEntity<Infos> updateInfos(@PathVariable(value="idEmp")int idEmp,
                                              @PathVariable(value = "idMess") int idMess,
