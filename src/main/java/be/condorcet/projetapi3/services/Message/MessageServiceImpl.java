@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -51,6 +52,10 @@ public class MessageServiceImpl implements InterfMessageService{
         List<Message> lme = messageRepository.findMessageByEmploye(emp);
         return lme;
     }
+    public List<Message> getMessageByEmpandObjet(String mail, String objet){
+        List<Message> lme = messageRepository.findMessageByEmploye_MailEmpAndObjet(mail,objet);
+        return lme;
+    }
 
     public List<Message> getMessageBySender(String email){
         List<Message> lme = messageRepository.findMessageByEmploye_MailEmp(email);
@@ -59,6 +64,10 @@ public class MessageServiceImpl implements InterfMessageService{
 
     public List<Message> getMessageByObject(String obj){
         List<Message> lme = messageRepository.findMessageByObjet(obj);
+        return lme;
+    }
+    public List<Message>getMessageBetweenDate(Employe emp,Date before, Date after){
+        List<Message> lme = messageRepository.findMessageByEmployeAndDateenvoiBeforeAndDateenvoiAfter(emp,before,after);
         return lme;
     }
 }

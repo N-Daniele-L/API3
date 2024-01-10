@@ -13,6 +13,6 @@ public interface EmployeRepository extends JpaRepository<Employe,Integer>{
     List<Employe>findByNom(String nom);
     List<Employe> findByNomLike(String nom);
     Employe findByNomAndPrenomAndMailEmp(String nom, String prenom,String mail);
-
     Employe findByMailEmp(String mail);
+
 }

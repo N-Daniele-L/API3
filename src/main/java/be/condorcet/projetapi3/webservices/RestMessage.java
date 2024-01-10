@@ -4,10 +4,12 @@ import be.condorcet.projetapi3.modele.Message;
 import be.condorcet.projetapi3.services.Employe.EmployeServiceImpl;
 import be.condorcet.projetapi3.services.Message.MessageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*",exposedHeaders = "*")
@@ -18,6 +20,16 @@ public class RestMessage {
     private MessageServiceImpl messageService;
     @Autowired
     private EmployeServiceImpl employeService;
+
+    @RequestMapping(value = "/idEmploye={id}/before={before}/after={after}",method = RequestMethod.GET)
+    public ResponseEntity<List<Message>> betweendate(@PathVariable(value = "id")int id,
+                                                     @PathVariable("before")@DateTimeFormat(pattern = "yyyy-MM-dd")Date before,
+                                                     @PathVariable("after")@DateTimeFormat(pattern = "yyyy-MM-dd")Date after) throws Exception{
+        System.out.println("recherche message entre deux dates");
+        Employe emp = employeService.read(id);
+        List<Message> message = messageService.getMessageBetweenDate(emp,before,after);
+        return new ResponseEntity<>(message,HttpStatus.OK);
+    }
     @RequestMapping(value="/{id}",method = RequestMethod.GET)
     public ResponseEntity<Message> getMessage(@PathVariable(value = "id") int id) throws Exception{
         System.out.println("recherche du message avec Id : " + id);
@@ -38,6 +50,14 @@ public class RestMessage {
         List<Message> lme = messageService.getMessageByEmp(emp);
         return new ResponseEntity<>(lme,HttpStatus.OK);
     }
+    @RequestMapping(value = "/mail={mail}/objet={objet}",method = RequestMethod.GET)
+    public ResponseEntity <List<Message>> getMessageBySenderAndObjet(@PathVariable(value = "mail")String mail,
+                                                                     @PathVariable(value = "objet")String objet) throws Exception{
+        System.out.println("recherche des messages envoyé par l'employé avec ce mail : "+ mail + "et cet objet" + objet);
+        List<Message> lme = messageService.getMessageByEmpandObjet(mail,objet);
+        return new ResponseEntity<>(lme,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/mail={mail}",method = RequestMethod.GET)
     public ResponseEntity <List<Message>> getMessageBySender(@PathVariable(value = "mail")String mail) throws Exception{
         System.out.println("recherche des messages envoyé par l'employé avec cet id : "+ mail);
@@ -70,6 +90,9 @@ public class RestMessage {
         System.out.println("recherche de tous les messages");
         return new ResponseEntity<>(messageService.all(), HttpStatus.OK);
     }
+
+
+
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Void>  handleIOException(Exception ex) {
         System.out.println("erreur : "+ex.getMessage());
